@@ -1,6 +1,6 @@
 <?php
-script('nextcloud-retention-normalize-mtime', 'admin');
-style('nextcloud-retention-normalize-mtime', 'admin');
+script('retention_normalize_mtime', 'admin');
+style('retention_normalize_mtime', 'admin');
 ?>
 
 <div id="retention-normalize-mtime-settings" class="section">

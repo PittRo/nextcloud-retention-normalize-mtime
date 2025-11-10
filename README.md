@@ -52,8 +52,8 @@ Die App registriert sich auf:
 
 ```bash
 cd /var/www/html/nextcloud/apps/
-git clone https://github.com/PittRo/nextcloud-retention-normalize-mtime.git retention_normalize_mtime
-cd retention_normalize_mtime
+git clone https://github.com/PittRo/nextcloud-retention-normalize-mtime.git
+cd nextcloud-retention-normalize-mtime
 sudo -u www-data php ../../occ app:enable retention_normalize_mtime
 ```
 

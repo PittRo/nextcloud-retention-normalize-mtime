@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <info>
-  <id>nextcloud-retention-normalize-mtime</id>
+  <id>retention_normalize_mtime</id>
   <name>Retention Normalize mtime</name>
   <summary>Set mtime to upload time on file creation</summary>
   <description><![CDATA[
@@ -34,5 +34,8 @@ This app normalizes the mtime to the actual upload time, ensuring files are reta
   <dependencies>
     <nextcloud min-version="29" max-version="30"/>
   </dependencies>
+  <settings>
+    <admin>OCA\RetentionNormalizeMtime\Settings\AdminSettings</admin>
+  </settings>
 </info>
 

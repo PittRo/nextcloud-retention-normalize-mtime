@@ -73,9 +73,9 @@ class NormalizeMtimeListener implements IEventListener {
 		}
 		$uid = $owner->getUID();
 
-		// Lade Filter aus Config
-		$limitToGroup = $this->config->getAppValue('nextcloud-retention-normalize-mtime', 'limit_to_group', '');
-		$limitToPrefix = $this->config->getAppValue('nextcloud-retention-normalize-mtime', 'limit_to_prefix', '');
+		// Lade Filter-Einstellungen aus der Config
+		$limitToGroup = $this->config->getAppValue('retention_normalize_mtime', 'limit_to_group', '');
+		$limitToPrefix = $this->config->getAppValue('retention_normalize_mtime', 'limit_to_prefix', '');
 
 		// optional: Gruppenfilter
 		if ($limitToGroup && !$this->groupManager->isInGroup($uid, $limitToGroup)) {

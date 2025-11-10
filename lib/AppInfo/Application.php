@@ -19,12 +19,10 @@ use OCP\IServerContainer;
 // Guard gegen doppelte Deklaration, falls die Klasse irgendwo anders schon geladen wurde
 if (!\class_exists('OCA\\RetentionNormalizeMtime\\AppInfo\\Application', false)) {
 	class Application extends App implements IBootstrap {
-		public const APP_ID = 'nextcloud-retention-normalize-mtime';
+		public const APP_ID = 'retention_normalize_mtime';
 		public function __construct() { parent::__construct(self::APP_ID); }
 
 		public function register(IRegistrationContext $context): void {
-			// Register admin settings
-			$context->registerSetting(AdminSettings::class);
 
 			// Register listener as a service so DI is reliable
 			$context->registerService(NormalizeMtimeListener::class, function (ContainerInterface $c) {
