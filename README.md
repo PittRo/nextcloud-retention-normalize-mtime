@@ -168,5 +168,5 @@ Logs prüfen: `data/retention_normalize_mtime.log`
 
 ## Entwickler
 
-[Heimrich & Hannot GmbH](https://www.heimrich-hannot.de)
+Pitt Roscher
 

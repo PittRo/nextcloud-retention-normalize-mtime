@@ -3,6 +3,30 @@
   <id>retention_normalize_mtime</id>
   <name>Retention Normalize mtime</name>
   <summary>Set mtime to upload time on file creation</summary>
+  <description><![CDATA[
+This app automatically sets the modification time (mtime) of uploaded files to the current upload time.
+
+## Why is this necessary?
+
+When using Nextcloud retention flows (automatic deletion of old files), the deletion decision is typically based on the file's mtime. Without this app, files uploaded with old original timestamps would be deleted immediately by retention policies, even though they were just uploaded.
+
+**Problem scenario:**
+- You have a retention flow: "Delete files in /Retention older than 30 days"
+- A user uploads a file originally created on 2024-09-15
+- Nextcloud keeps the original timestamp (2024-09-15)
+- The retention flow checks mtime and deletes the file immediately because it appears older than 30 days
+- File is deleted even though it was just uploaded!
+
+**Solution:**
+This app normalizes the mtime to the actual upload time, ensuring files are retained for the correct duration.
+
+## Features
+- Automatic mtime normalization on upload
+- Works with all upload methods (Web-UI, WebDAV, Apps)
+- Optional group and folder filters
+- Error-only logging
+- Shutdown handler with DB fallback for reliability
+  ]]></description>
   <version>1.2.0</version>
   <licence>agpl</licence>
   <author>Pitt Roscher</author>
