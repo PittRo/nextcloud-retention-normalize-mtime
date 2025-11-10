@@ -8,18 +8,16 @@ use OCP\Files\Events\Node\NodeWrittenEvent;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\IGroupManager;
+use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 
 /** @implements IEventListener<Event> */
 class NormalizeMtimeListener implements IEventListener {
-	// Für den Start OHNE Filter – erst testen, dann einschränken:
-	private ?string $limitToGroup  = null;       // z.B. 'hundh'
-	private ?string $limitToPrefix = null;       // z.B. '/Retention'
-
 	public function __construct(
 		private IRootFolder $rootFolder,
 		private IGroupManager $groupManager,
-		private LoggerInterface $logger
+		private LoggerInterface $logger,
+		private IConfig $config
 	) {}
 
 	private function writeFileLog(string $msg): void {
@@ -75,13 +73,17 @@ class NormalizeMtimeListener implements IEventListener {
 		}
 		$uid = $owner->getUID();
 
+		// Lade Filter aus Config
+		$limitToGroup = $this->config->getAppValue('nextcloud-retention-normalize-mtime', 'limit_to_group', '');
+		$limitToPrefix = $this->config->getAppValue('nextcloud-retention-normalize-mtime', 'limit_to_prefix', '');
+
 		// optional: Gruppenfilter
-		if ($this->limitToGroup && !$this->groupManager->isInGroup($uid, $this->limitToGroup)) {
+		if ($limitToGroup && !$this->groupManager->isInGroup($uid, $limitToGroup)) {
 			return;
 		}
 
 		// optional: Ordnerpräfixfilter
-		if ($this->limitToPrefix) {
+		if ($limitToPrefix) {
 			try {
 				$userFolder = $this->rootFolder->getUserFolder($uid);
 				$relPath = null;
@@ -96,10 +98,10 @@ class NormalizeMtimeListener implements IEventListener {
 					$relPath = $userFolder->getRelativePath($path);
 				}
 
-				$rel = '/' . ltrim((string)$relPath, '/');
-				if (!str_starts_with($rel, $this->limitToPrefix)) {
-					return;
-				}
+			$rel = '/' . ltrim((string)$relPath, '/');
+			if (!str_starts_with($rel, $limitToPrefix)) {
+				return;
+			}
 			} catch (\Throwable $e) {
 				$this->writeFileLog('ERROR: getRelativePath failed: ' . $e->getMessage());
 				return;
