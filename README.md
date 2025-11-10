@@ -52,15 +52,17 @@ Die App registriert sich auf:
 
 ```bash
 cd /var/www/html/nextcloud/apps/
-git clone https://github.com/PittRo/nextcloud-retention-normalize-mtime.git
-cd nextcloud-retention-normalize-mtime
+git clone https://github.com/PittRo/nextcloud-retention-normalize-mtime.git retention_normalize_mtime
+cd retention_normalize_mtime
 sudo -u www-data php ../../occ app:enable retention_normalize_mtime
 ```
+
+**Wichtig:** Das Verzeichnis **muss** `retention_normalize_mtime` heißen (entspricht der App-ID), auch wenn das GitHub-Repository `nextcloud-retention-normalize-mtime` heißt.
 
 ### Via ZIP-Download
 
 1. Download der neuesten Version: [Releases](https://github.com/PittRo/nextcloud-retention-normalize-mtime/releases)
-2. Entpacken nach `apps/nextcloud-retention-normalize-mtime/`
+2. Entpacken nach `apps/retention_normalize_mtime/` (nicht `nextcloud-retention-normalize-mtime`!)
 3. App aktivieren: `occ app:enable retention_normalize_mtime`
 
 ## Konfiguration
@@ -132,7 +134,7 @@ Wenn die Datei nicht existiert oder leer ist, funktioniert alles! ✅
 ## Dateistruktur
 
 ```
-nextcloud-retention-normalize-mtime/
+retention_normalize_mtime/          # Lokales Verzeichnis (entspricht App-ID)
 ├── README.md
 ├── appinfo/
 │   ├── application.php          # App-Bootstrap
@@ -143,6 +145,8 @@ nextcloud-retention-normalize-mtime/
     └── Listener/
         └── NormalizeMtimeListener.php  # Event-Listener für Datei-Events
 ```
+
+**Hinweis:** Das GitHub-Repository heißt `nextcloud-retention-normalize-mtime`, aber das lokale Verzeichnis muss `retention_normalize_mtime` heißen (App-ID).
 
 ## Technische Details
 
