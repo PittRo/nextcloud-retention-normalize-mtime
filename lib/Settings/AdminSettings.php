@@ -12,11 +12,11 @@ class AdminSettings implements ISettings {
 
 	public function getForm(): TemplateResponse {
 		$parameters = [
-			'limit_to_group' => $this->config->getAppValue('retention_normalize_mtime', 'limit_to_group', ''),
-			'limit_to_prefix' => $this->config->getAppValue('retention_normalize_mtime', 'limit_to_prefix', ''),
+			'limit_to_group' => $this->config->getAppValue('retention-normalize-mtime', 'limit_to_group', ''),
+			'limit_to_prefix' => $this->config->getAppValue('retention-normalize-mtime', 'limit_to_prefix', ''),
 		];
 
-		return new TemplateResponse('retention_normalize_mtime', 'admin', $parameters);
+		return new TemplateResponse('retention-normalize-mtime', 'admin', $parameters);
 	}
 
 	public function getSection(): string {

@@ -74,8 +74,8 @@ class NormalizeMtimeListener implements IEventListener {
 		$uid = $owner->getUID();
 
 		// Lade Filter-Einstellungen aus der Config
-		$limitToGroup = $this->config->getAppValue('retention_normalize_mtime', 'limit_to_group', '');
-		$limitToPrefix = $this->config->getAppValue('retention_normalize_mtime', 'limit_to_prefix', '');
+		$limitToGroup = $this->config->getAppValue('retention-normalize-mtime', 'limit_to_group', '');
+		$limitToPrefix = $this->config->getAppValue('retention-normalize-mtime', 'limit_to_prefix', '');
 
 		// optional: Gruppenfilter
 		if ($limitToGroup && !$this->groupManager->isInGroup($uid, $limitToGroup)) {

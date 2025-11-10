@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <info>
-  <id>retention_normalize_mtime</id>
+  <id>retention-normalize-mtime</id>
   <name>Retention Normalize mtime</name>
   <summary>Set mtime to upload time on file creation</summary>
   <description><![CDATA[

@@ -13,8 +13,8 @@
 			const limitToPrefix = $('#limit-to-prefix').val();
 			
 			Promise.all([
-				OC.AppConfig.setValue('retention_normalize_mtime', 'limit_to_group', limitToGroup),
-				OC.AppConfig.setValue('retention_normalize_mtime', 'limit_to_prefix', limitToPrefix)
+				OC.AppConfig.setValue('retention-normalize-mtime', 'limit_to_group', limitToGroup),
+				OC.AppConfig.setValue('retention-normalize-mtime', 'limit_to_prefix', limitToPrefix)
 			]).then(function() {
 				msg.text('Settings saved successfully').addClass('success');
 				button.prop('disabled', false);

@@ -25,7 +25,7 @@ class SettingsController extends Controller {
 			return new JSONResponse(['status' => 'error', 'message' => 'Invalid key'], 400);
 		}
 
-		$this->config->setAppValue('retention_normalize_mtime', $key, $value);
+		$this->config->setAppValue('retention-normalize-mtime', $key, $value);
 
 		return new JSONResponse(['status' => 'success']);
 	}

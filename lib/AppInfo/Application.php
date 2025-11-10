@@ -19,7 +19,7 @@ use OCP\IServerContainer;
 // Guard gegen doppelte Deklaration, falls die Klasse irgendwo anders schon geladen wurde
 if (!\class_exists('OCA\\RetentionNormalizeMtime\\AppInfo\\Application', false)) {
 	class Application extends App implements IBootstrap {
-		public const APP_ID = 'retention_normalize_mtime';
+		public const APP_ID = 'retention-normalize-mtime';
 		public function __construct() { parent::__construct(self::APP_ID); }
 
 		public function register(IRegistrationContext $context): void {
