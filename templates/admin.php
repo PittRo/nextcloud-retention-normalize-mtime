@@ -1,6 +1,5 @@
 <?php
 script('retention-normalize-mtime', 'admin');
-style('retention-normalize-mtime', 'admin');
 ?>
 
 <div id="retention-normalize-mtime-settings" class="section">

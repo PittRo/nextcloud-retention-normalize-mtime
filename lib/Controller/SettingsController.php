@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace OCA\RetentionNormalizeMtime\Controller;
 
 use OCP\AppFramework\Controller;
@@ -21,7 +23,7 @@ class SettingsController extends Controller {
 	public function setAdminConfig(string $key, string $value): JSONResponse {
 		$allowedKeys = ['limit_to_group', 'limit_to_prefix'];
 
-		if (!in_array($key, $allowedKeys)) {
+		if (!in_array($key, $allowedKeys, true)) {
 			return new JSONResponse(['status' => 'error', 'message' => 'Invalid key'], 400);
 		}
 
@@ -30,4 +32,3 @@ class SettingsController extends Controller {
 		return new JSONResponse(['status' => 'success']);
 	}
 }
-

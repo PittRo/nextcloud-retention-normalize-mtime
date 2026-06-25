@@ -11,12 +11,23 @@
 			
 			const limitToGroup = $('#limit-to-group').val();
 			const limitToPrefix = $('#limit-to-prefix').val();
+
+			const saveSetting = function(key, value) {
+				return $.ajax({
+					url: OC.generateUrl('/apps/retention-normalize-mtime/settings'),
+					method: 'POST',
+					data: {
+						key: key,
+						value: value,
+					},
+				});
+			};
 			
 			Promise.all([
-				OC.AppConfig.setValue('retention-normalize-mtime', 'limit_to_group', limitToGroup),
-				OC.AppConfig.setValue('retention-normalize-mtime', 'limit_to_prefix', limitToPrefix)
+				saveSetting('limit_to_group', limitToGroup),
+				saveSetting('limit_to_prefix', limitToPrefix)
 			]).then(function() {
-				msg.text('Settings saved successfully').addClass('success');
+				msg.show().text('Settings saved successfully').addClass('success');
 				button.prop('disabled', false);
 				setTimeout(function() {
 					msg.fadeOut();
@@ -28,4 +39,3 @@
 		});
 	});
 })();
-
